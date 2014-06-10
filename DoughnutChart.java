@@ -25,8 +25,11 @@ public class DoughnutChart extends PieChart {
     protected void layoutChartChildren(double top, double left, double contentWidth, double contentHeight) {
         super.layoutChartChildren(top, left, contentWidth, contentHeight);
 
-        updateInnerCircleLayout(getData(), innerCircle);
+        addInnerCircleIfNotPresent();
+        updateInnerCircleLayout();
+    }
 
+    private void addInnerCircleIfNotPresent() {
         if (getData().size() > 0) {
             Node pie = getData().get(0).getNode();
             if (pie.getParent() instanceof Pane) {
@@ -39,10 +42,10 @@ public class DoughnutChart extends PieChart {
         }
     }
 
-    private void updateInnerCircleLayout(ObservableList<PieChart.Data> pieChartData, Circle innerCircle) {
+    private void updateInnerCircleLayout() {
         double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE;
         double maxX = Double.MIN_VALUE, maxY = Double.MIN_VALUE;
-        for (PieChart.Data data: pieChartData) {
+        for (PieChart.Data data: getData()) {
             Node node = data.getNode();
 
             Bounds bounds = node.getBoundsInParent();
