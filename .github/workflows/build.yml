@@ -1,0 +1,53 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        java-version: [11, 17, 21]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'temurin'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Compile with Maven
+      run: mvn clean compile -B
+      
+    - name: Run tests
+      run: mvn test -B
+      
+    - name: Build JAR
+      run: mvn package -B
+      
+    - name: Build Scene Builder JAR
+      run: mvn package -Pscenebuilder -B
+      
+    - name: Upload build artifacts
+      if: matrix.java-version == 11  # Only upload artifacts for one Java version
+      uses: actions/upload-artifact@v4
+      with:
+        name: DoughnutChart
+        path: |
+          target/*.jar
+        retention-days: 5

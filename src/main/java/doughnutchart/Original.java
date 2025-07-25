@@ -1,3 +1,5 @@
+package doughnutchart;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -6,10 +8,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class DoughnutChart extends PieChart {
+public class Original extends PieChart {
     private final Circle innerCircle;
 
-    public DoughnutChart(ObservableList<Data> pieData) {
+    public Original(ObservableList<Data> pieData) {
         super(pieData);
 
         innerCircle = new Circle();
