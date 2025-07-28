@@ -81,84 +81,9 @@ chart.setData(data);
 2. Import the JAR in Scene Builder
 3. Drag and drop the `DoughnutChart` component from the custom components section
 
-## Building for Scene Builder
-
-To use this component in Scene Builder:
-
-### Option 1: Use the regular JAR (Recommended for Scene Builder)
-```bash
-mvn clean package
-```
-This generates `target/doughnutchart-javafx-1.0.0.jar` which is perfect for Scene Builder.
-
-### Option 2: Use the Scene Builder specific profile
-```bash
-mvn clean package -Pscenebuilder
-```
-This generates `target/doughnutchart-javafx-1.0.0-scenebuilder.jar` optimized for Scene Builder.
-
-### Available JAR Files
-
-After building, you'll find these JAR files in the `target` directory:
-
-- **`doughnutchart-javafx-1.0.0.jar`** - Regular JAR (7.8KB) - **Best for Scene Builder**
-- **`doughnutchart-javafx-1.0.0-fat.jar`** - Fat JAR with all dependencies (8.1MB) - For standalone applications
-- **`doughnutchart-javafx-1.0.0-sources.jar`** - Source code JAR
-- **`doughnutchart-javafx-1.0.0-scenebuilder.jar`** - Scene Builder optimized JAR (when using the profile)
-
-### Scene Builder Integration Steps
-
-1. Build the project: `mvn clean package`
-2. In Scene Builder, go to `Library` → `JAR/FXML Manager`
-3. Add `target/doughnutchart-javafx-1.0.0.jar` to make the `DoughnutChart` component available
-4. The component will appear in the custom components section
-
-### Running the Sample Application
-
-To run the included sample application:
-```bash
-mvn javafx:run
-```
-
-Or run the fat JAR directly:
-```bash
-java -jar target/doughnutchart-javafx-1.0.0-fat.jar
-```
-
-## GitHub Actions CI/CD
-
-This project includes automated GitHub Actions workflows:
-
-### 🔄 Build Workflow
-- **Trigger:** Every push and pull request to master/main
-- **Tests:** Java 11, 17, and 21 compatibility
-- **Actions:** Compiles, tests, and builds all JAR variants
-- **Artifacts:** Uploads JAR files for 5 days
-
-### 🚀 Release Workflow
-- **Trigger:** When you push a version tag (e.g., `v1.0.0`)
-- **Actions:** Builds all JARs and creates a GitHub release
-- **Assets:** Automatically uploads all JAR variants to the release
-
-### Creating a Release
-To create a new release:
-
-```bash
-# Tag your commit with a version
-git tag v1.0.1
-git push origin v1.0.1
-
-# GitHub Actions will automatically:
-# 1. Build all JAR files
-# 2. Create a GitHub release  
-# 3. Upload JAR files as release assets
-# 4. Generate release notes
-```
-
 ## Credits
 
 - Original implementation: [jewelsea on Stack Overflow](https://stackoverflow.com/a/24134992)
-- FXML enhancement: This fork
 
 ## License
 
