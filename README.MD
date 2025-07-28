@@ -27,11 +27,8 @@ The original implementation by jewelsea provided a robust doughnut chart by exte
 
 This project uses Maven for dependency management and JAR generation. The `pom.xml` includes:
 
-- JavaFX 17.0.2 dependencies
-- Maven Shade Plugin for creating fat JARs with all dependencies
-- Source JAR generation
-- Special Scene Builder profile
-- Java 11 compatibility
+- JavaFX 17+
+- Maven 
 
 ### Quick Start with Maven
 
